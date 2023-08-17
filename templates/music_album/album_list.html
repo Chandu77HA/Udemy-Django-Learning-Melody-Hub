@@ -1,0 +1,29 @@
+{% extends "layout/base_ma.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h1>Album List</h1>
+
+<ul>
+
+    {% if album_list %}
+
+    {% for album in album_list %}
+    <li>
+
+        {{ album.artist }} : {{ album.name }}
+
+    </li>
+    {% endfor %}
+
+    {% else %}
+
+    <h3>No Album found  in the Database</h3>
+
+    {% endif %}
+
+</ul>
+
+{% endblock %}

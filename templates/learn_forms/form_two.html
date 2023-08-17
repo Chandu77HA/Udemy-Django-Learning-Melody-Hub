@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Form-2</title>
+  </head>
+  <body>
+
+    <h3>This is a Form - 2 Created by Django Forms</h3>
+
+    <h3>{{heading_1}}</h3>
+
+    <form class="" method="POST">
+      {% csrf_token %}
+
+      {{ test_form.as_p }}
+
+      <input type="submit" name="submit" value="submit">
+
+    </form>
+
+    <hr>
+
+    {% if form_submited %}
+
+    <p>Name : {{ user_name }}</p>
+    <p>Email : {{ user_email }}</p>
+    <p>Date of Birth : {{ user_dob }}</p>
+
+    {% endif %}
+
+  </body>
+</html>

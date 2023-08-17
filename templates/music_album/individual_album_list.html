@@ -1,0 +1,45 @@
+{% extends "layout/base_ma.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h1>Individual Album List</h1>
+
+<h4> Artist Info : {{ artist_info.first_name }} {{ artist_info.last_name }}</h4>
+<h4> Instrument Name : {{ artist_info.instrument }}</h4>
+<h4> Artist Rating : {{ artist_rating.num_stars__avg }}</h4>
+
+<hr>
+
+<a href="{% url 'music_album:edit_artist' artist_id=artist_info.id %}" class="btn btn-primary btn-md">Edit</a>
+
+<br>
+<br>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Album Name</th>
+        <th>Release Date</th>
+        <th>Rating</th>
+    </tr>
+
+    {% for album in ind_album_list %}
+
+    <tr>
+
+        <td><a href="{% url 'music_album:edit_album' album_id=album.id %}">{{album.name}}</a></td>
+        <td>{{album.release_date}}</td>
+        <td>{{album.num_stars}}</td>
+
+    </tr>
+
+    {% endfor %}
+    
+</table>
+
+<hr>
+
+<a href="{% url 'music_album:delete_musician' artist_id=artist_info.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Delete This Album?')">Delete</a>
+
+{% endblock %}

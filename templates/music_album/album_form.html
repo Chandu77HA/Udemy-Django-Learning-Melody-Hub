@@ -1,0 +1,18 @@
+{% extends "layout/base_ma.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h1>Album Form</h1>
+
+<form method="POST">
+
+    {{ album_form.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Add Album" class="btn btn-primary btn-sm">
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout/base_ma.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h1>Musician List</h1>
+
+<ul>
+
+    {% if musician_list %}
+
+    {% for musician in musician_list %}
+
+    <li><a href="{% url 'music_album:individual_album_list' artist_id=musician.id %}">{{ musician.first_name }} {{ musician.last_name }}</a></li>
+
+    {% endfor %}
+
+    {% else %}
+
+    <h3>No Musicians found in the Database</h3>
+
+    {% endif %}
+
+</ul>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+# Relative URLS
+http://127.0.0.1:8000/learn_forms/musician_form/
+http://127.0.0.1:8000/music_album/list_musician/
+
+# Learning Template Inheritence and Template Filters
+http://127.0.0.1:8000/music_album/test_one/

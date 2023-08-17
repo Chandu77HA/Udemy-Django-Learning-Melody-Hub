@@ -1,0 +1,27 @@
+{% extends "layout/base.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h2>{{ sample_text }}</h2>
+
+<h3>{{ sample_data }}</h3>
+<br>
+<h4>{{ text_one|upper }}</h4>
+<h4>{{ text_two|lower }}</h4>
+<h4>{{ text_three|add:8 }}</h4>
+<h4>{{ text_four|capfirst }}</h4>
+<h4>{{ text_five|cut:'d' }}</h4>
+<br>
+<h4>{{ text_six }}</h4>
+<br>
+<h4>Album Name: {{ get_album.artist }}</h4>
+<h4>Artist Name: {{ get_album.name }}</h4>
+<h4>Release Date: {{ get_album.release_date|date:"D, d M Y" }}</h4>
+<h4>Number of Stars: {{ get_album.num_stars }}</h4>
+
+<h4>{{ text_seven|custom_filter }}</h4>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Musician List</title>
+  </head>
+  <body>
+
+    <h1>Musicians include songwriters who write both music and lyrics for songs, conductors who direct a musical performance, or performers who perform for an audience.</h1>
+
+    <h2>A music performer is generally either a singer who provides vocals or an instrumentalist who plays a musical instrument.</h2>
+
+    <img src="{% static 'images/mus.jpeg'%}" alt="">
+
+    <br>
+
+    <a href="{% url 'learn_forms:musician_form' %}">Add New Musician</a>
+
+    <br>
+    
+    <h2>{{text}}</h2>
+
+    <table border="1">
+
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Instrument</th>
+      </tr>
+
+      {% for row in musician %}
+
+      <tr>
+        <td>{{ row.first_name }}</td>
+        <td>{{ row.last_name }}</td>
+        <td>{{ row.instrument }}</td>
+      </tr>
+
+      {% endfor %}
+
+    </table>
+
+
+  </body>
+</html>

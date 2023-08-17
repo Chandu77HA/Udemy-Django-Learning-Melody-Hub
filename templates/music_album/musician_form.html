@@ -1,0 +1,17 @@
+{% extends "layout/base_ma.html" %}
+
+{% load my_filters %}
+
+{% block body_block %}
+
+<h1>Musician Form</h1>
+
+<form method="POST">
+
+    {{ musician_form.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Add Musician" class="btn btn-primary btn-sm">
+
+</form>
+
+{% endblock %}
