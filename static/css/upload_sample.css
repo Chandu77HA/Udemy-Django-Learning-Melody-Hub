@@ -1,0 +1,42 @@
+.small-select {
+    max-width: 220px; }
+
+.custom-card {
+    background-color:#74808d; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1500px; 
+    max-height:785px ;
+    margin: 0 auto; 
+    margin-top: 5px;
+}
+
+ input#id_sample_file {
+  padding: 0px ;
+}
+
+
+
+ input::file-selector-button {
+  height:36.2px ;
+  padding: 0.5em;
+  border-radius: 3px;
+  line-height: 18.1px;
+ 
+}
+
+h1 {
+  font-family: 'Times New Roman', Times, serif;
+  
+}
+
+
+
+
+    .custom-control-input.round-switch {
+        width: 60px; / Adjust the width to increase the size of the toggle switch /
+        height: 30px; / Adjust the height to increase the size of the toggle switch /
+    }
+
+   

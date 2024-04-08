@@ -1,0 +1,46 @@
+{% extends "layout/base_ma.html" %}
+
+
+
+{% block title %}
+upload_sample
+{% endblock %}
+
+
+
+{% block body_block %}
+  
+
+<div class="container h-100 mt-4">
+  <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-xl-12">
+          <div class="text-center">
+              <h1 class="text-black mb-4">Upload Sample</h1>
+              <div class="card custom-card"  style=background-color:#dde2e9;>
+                  <form method="POST" enctype="multipart/form-data" >
+                      {% csrf_token %}
+                      <div class="form-group"></div>
+                      <div class="form-group row justify-content-center medium-form-width medium-date-time">
+                        <label  class="col-md-12 text-center"><b>File Name</b></label>
+                        {{ form.file_name }}
+                      </div>
+                      <div class="form-group row justify-content-center medium-form-width">
+                        <label for="csv-data-dropdown" class="col-md-12 text-center"><b>Sample File</b></label>
+                        
+                          {{ form.sample_file }}
+                    </div>
+                      <div class="text-center mt-4">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+      {% load static %} 
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/upload_sample.css' %}">
+
+ {% endblock %}
