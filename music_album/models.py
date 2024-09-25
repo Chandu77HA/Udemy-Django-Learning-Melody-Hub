@@ -36,12 +36,3 @@ class Album(models.Model):
     def __str__(self):
         return self.name + ", Rating - " + str(self.num_stars)
 
-
-class UploadSamplFile(models.Model):
-    file_name = models.CharField(max_length=1000)
-    sample_file = models.FileField(
-        upload_to='sample_files/')
-
-    def __str__(self):
-        file_name = self.sample_file.name.split("/")[-1]
-        return file_name

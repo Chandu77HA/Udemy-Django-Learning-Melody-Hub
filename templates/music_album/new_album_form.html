@@ -1,0 +1,38 @@
+{% extends "layout/base_ma.html" %}
+{% block body_block %}
+
+<h1>Album Form</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <!-- Artist (assuming you have a dropdown with all musicians) -->
+    <label for="artist">Artist:</label>
+    <select name="artist" id="artist">
+        {% for musician in musicians %}
+            <option value="{{ musician.id }}">{{ musician.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <!-- Album Name -->
+    <label for="name">Album Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <!-- Release Date -->
+    <label for="release_date">Release Date:</label>
+    <input type="date" id="release_date" name="release_date"><br><br>
+
+    <!-- Rating -->
+    <label for="rating">Rating:</label>
+    <select name="num_stars" id="rating">
+        <option value="1">Worst</option>
+        <option value="2">Bad</option>
+        <option value="3">Not Bad</option>
+        <option value="4">Good</option>
+        <option value="5">Excellent</option>
+    </select><br><br>
+
+    <input type="submit" name="submit" value="Add Album" class="btn btn-primary btn-sm">
+</form>
+
+{% endblock %}

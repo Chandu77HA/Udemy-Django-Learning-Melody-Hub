@@ -1,8 +1,8 @@
-from .forms import UploadSamplFileForm
 from django.shortcuts import render, redirect
 from music_album.models import Musician, Album
 from music_album import forms
 from django.db.models import Avg
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -17,14 +17,14 @@ def list_musician(request):
 def test_one(request):
     data_passing = {'sample_text': 'Learning Template Inheritence',
                     'sample_data': 'Nav bar is from layout/base.html and Inherited in this page using template Inheritence',
-                    'text_one': 'our perseption is our reality',
-                    'text_two': 'WHAT YOU THINK YOU BECOME',
-                    'text_three': '10',
-                    'text_four': 'believe in yourself',
-                    'text_five': 'django uses ORM',
-                    'text_six': 'Get the Album data from admin',
-                    'get_album': Album.objects.get(pk=1),
-                    'text_seven': 'To check filters working - ',
+                    'text_one': 'Template inheritance in Django is a powerful feature that allows you to create a base (or parent)',
+                    'text_two': 'template with common structure and layout elements (like headers, footers, navigation menus), and',
+                    'text_three': 'then extend this base template with other child templates to',
+                    'text_four': 'reuse the layout while customizing the',
+                    'text_five': 'specific content for different pages.',
+                    'text_six': 'This approach helps avoid code duplication by letting you define the common structure once in the ',
+                    'get_album': Album.objects.get(pk=6),
+                    'text_seven': 'base template and then focus on the unique parts of each page in child templates.',
                     }
     return render(request, 'music_album/test_one.html', context=data_passing)
 
@@ -56,7 +56,7 @@ def album_form(request):
 
         if load_album_form.is_valid():
             load_album_form.save(commit=True)
-            return album_list(request)
+            return redirect(reverse('music_album:album_list'))
 
     album_data = {
         'title': 'Add Album',
@@ -82,7 +82,7 @@ def musician_form(request):
 
         if load_musician_form.is_valid():
             load_musician_form.save(commit=True)
-            return musician_list(request)
+            return redirect(reverse('music_album:musician_list'))
 
     album_data = {
         'title': 'Add Musician',
@@ -167,18 +167,55 @@ def sample_file_details(request):
     return render(request, 'music_album/select_headers.html', {'form': form})
 
 
-# def dexma_app_cred_home(request):
-#     if request.method == "POST":,
-#         app_id = request.POST.get("dexma_app_id", ' ').strip()
-#         app_secret_id = request.POST.get("dexma_app_secret_id", ' ').strip()
-#         app_cred = DexmaAppCredentials.objects.first()
-#         if app_cred:
-#             app_cred.dexma_app_id = app_id
-#             app_cred.dexma_app_secret_id = app_secret_id
-#             app_cred.save()
-#         else:
-#             app_cred = DexmaAppCredentials(
-#                 dexma_app_id=app_id, dexma_app_secret_id=app_secret_id)
-#             app_cred.save()
-#         return redirect('display_dexama_app_cred')
-#     return render(request, "test_app/dexma_app_cred_submit.html")
+
+
+def new_album_form(request):
+    if request.method == 'POST':
+        # Extract data from POST request
+        artist_id = request.POST.get('artist')
+        name = request.POST.get('name')
+        release_date = request.POST.get('release_date')
+        num_stars = request.POST.get('num_stars')
+
+        # Validate data (simple validation, you can expand it further)
+        if artist_id and name and release_date and num_stars:
+            try:
+                artist = Musician.objects.get(id=artist_id)  # Get the Musician object
+                # Create and save the Album
+                album = Album(artist=artist, name=name, release_date=release_date, num_stars=num_stars)
+                album.save()
+                return album_list(request)  # Redirect to album list or another page after saving
+            except Musician.DoesNotExist:
+                return HttpResponse("Musician not found", status=400)
+
+    # If not POST, show the empty form
+    musicians = Musician.objects.all()  # Pass all musicians to populate the dropdown
+    album_data = {
+        'title': 'Add Album',
+        'musicians': musicians
+    }
+    return render(request, 'music_album/new_album_form.html', context=album_data)
+
+from django.urls import reverse
+
+def new_musician_form(request):
+    if request.method == 'POST':
+        # Extract data from POST request
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        instrument = request.POST.get('instrument')
+
+        # Validate data (simple validation)
+        if first_name and last_name and instrument:
+            # Create and save the Musician
+            musician = Musician(first_name=first_name, last_name=last_name, instrument=instrument)
+            musician.save()
+            
+            # Redirect to musician list or another page to prevent form resubmission on refresh
+            return redirect(reverse('music_album:musician_list'))  # 'musician_list' should be the name of your URL pattern
+
+    # If not POST, show the empty form
+    album_data = {
+        'title': 'Add Musician'
+    }
+    return render(request, 'music_album/new_musician_form.html', context=album_data)

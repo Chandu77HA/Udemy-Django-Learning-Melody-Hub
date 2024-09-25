@@ -1,0 +1,25 @@
+{% extends "layout/base_ma.html" %}
+
+{% block body_block %}
+
+<h1>Musician Form</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- First Name -->
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required><br><br>
+
+    <!-- Last Name -->
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required><br><br>
+
+    <!-- Instrument -->
+    <label for="instrument">Instrument:</label>
+    <input type="text" id="instrument" name="instrument" required><br><br>
+
+    <input type="submit" name="submit" value="Add Musician" class="btn btn-primary btn-sm">
+</form>
+
+{% endblock %}

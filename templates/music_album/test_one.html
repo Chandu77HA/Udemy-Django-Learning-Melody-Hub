@@ -15,13 +15,15 @@
 <h4>{{ text_five|cut:'d' }}</h4>
 <br>
 <h4>{{ text_six }}</h4>
+<h4>{{ text_seven|custom_filter }}</h4>
+
 <br>
 <h4>Album Name: {{ get_album.artist }}</h4>
 <h4>Artist Name: {{ get_album.name }}</h4>
 <h4>Release Date: {{ get_album.release_date|date:"D, d M Y" }}</h4>
 <h4>Number of Stars: {{ get_album.num_stars }}</h4>
 
-<h4>{{ text_seven|custom_filter }}</h4>
+
 
 
 {% endblock %}

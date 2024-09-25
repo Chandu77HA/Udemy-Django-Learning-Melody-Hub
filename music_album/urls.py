@@ -7,7 +7,7 @@ urlpatterns = [
 
     path('list_musician/', views.list_musician, name='list_musician'),
     path('test_one/', views.test_one, name='test_one'),
-
+    
     # CRUD Operation
     path('home_page/', views.home_page, name='home_page'),
     path('album_list/', views.album_list, name='album_list'),
@@ -26,5 +26,11 @@ urlpatterns = [
 
     path('sample_file_details/', views.sample_file_details,
          name='disp_sample_file_details'),
+
+     path('new_album_form/', views.new_album_form, name='new_album_form'),
+     path('new_musician_form/', views.new_musician_form, name='new_musician_form'),
+
+
+     
 
 ]
